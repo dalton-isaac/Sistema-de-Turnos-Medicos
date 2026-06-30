@@ -20,8 +20,36 @@ public class SistemaCentroSalud{
             System.out.println("4. Salir");
             System.out.print("Ingrese una opción: ");
 
+            //Validación de la entrada del usuario para asegurarse de que sea un número entero
+            try{
+                opcion = Integer.parseInt(scanner.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("Por favor, ingrese un número válido.");
+                continue;
+            }
+            // Validación de la opción ingresada por el usuario
+            switch (opcion){
+                case 1: 
+                    System.out.print("Ingrese el nombre del paciente:");
+                    String nombre = scanner.nextLine();
+                    System.out.print("Ingrese la edad del paciente:");
+                    int edad;
+                    try{
+                        edad = Integer.parseInt(scanner.nextLine());
+                    }catch (NumberFormatException e){
+                        System.out.println("Por favor, ingrese un número válido para la edad.");
+                        break;
+                    }
+                    System.out.print("Ingrese el motivo de la consulta:");
+                    String motivo = scanner.nextLine();
 
-            
+                    Paciente nuevoPaciente = new Paciente(nombre, edad, motivo);
+                    registrarPaciente(colaEspera, nuevoPaciente);
+                    break;
+                case 2:
+                    atenderPaciente(colaEspera);
+                    break;
+            }
         }
         
     }
