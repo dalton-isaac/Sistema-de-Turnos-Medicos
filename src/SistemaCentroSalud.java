@@ -12,7 +12,7 @@ public class SistemaCentroSalud{
         // Menu de opciones para el usuario
         System.out.println("=====SISTEMA DE REGISTRO DEL CENTRO DE SALUD=====");
         
-        do{
+        do {
             System.out.println("\n---Menú de opciones---");
             System.out.println("1. Registrar nuevo paciente");
             System.out.println("2. Atender siguiente paciente");
@@ -21,22 +21,23 @@ public class SistemaCentroSalud{
             System.out.print("Ingrese una opción: ");
 
             //Validación de la entrada del usuario para asegurarse de que sea un número entero
-            try{
+            try {
                 opcion = Integer.parseInt(scanner.nextLine());
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Por favor, ingrese un número válido.");
                 continue;
             }
             // Validación de la opción ingresada por el usuario
-            switch (opcion){
-                case 1: 
+            switch (opcion) {
+                //Registro de un nuevo paciente
+                case 1:
                     System.out.print("Ingrese el nombre del paciente:");
                     String nombre = scanner.nextLine();
                     System.out.print("Ingrese la edad del paciente:");
                     int edad;
-                    try{
+                    try {
                         edad = Integer.parseInt(scanner.nextLine());
-                    }catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         System.out.println("Por favor, ingrese un número válido para la edad.");
                         break;
                     }
@@ -46,11 +47,27 @@ public class SistemaCentroSalud{
                     Paciente nuevoPaciente = new Paciente(nombre, edad, motivo);
                     registrarPaciente(colaEspera, nuevoPaciente);
                     break;
+
+                //Atender al siguiente paciente
+
                 case 2:
                     atenderPaciente(colaEspera);
                     break;
+
+                //Numero de pacientes en espera
+
+                System.out.println("Pacientes actualmente en espera: " + colaEspera.size());
+
+                // Opcion para salir del programa
+                case 4:
+                    System.out.println(" ========== Saliendo del programa ========== ");
+                    break;
+
+                //En caso de ingresar una entrada invalida
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
             }
-        }
-        
+        }while(opcion!=4);
+        scanner.close();
     }
 }
