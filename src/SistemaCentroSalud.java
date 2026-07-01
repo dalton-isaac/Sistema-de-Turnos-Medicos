@@ -55,8 +55,10 @@ public class SistemaCentroSalud{
                     break;
 
                 //Numero de pacientes en espera
+                case 3:
+                    System.out.println("Pacientes actualmente en espera: " + colaEspera.size());
+                    break;
 
-                System.out.println("Pacientes actualmente en espera: " + colaEspera.size());
 
                 // Opcion para salir del programa
                 case 4:
@@ -69,5 +71,22 @@ public class SistemaCentroSalud{
             }
         }while(opcion!=4);
         scanner.close();
+    }
+    public static void atenderPaciente(Queue<Paciente> cola) {
+        // Verificamos que la cola no esté vacía
+        if (!cola.isEmpty()) {
+            // poll() extrae y elimina el primer elemento de la cola (FIFO)
+            Paciente pacienteAtendido = cola.poll();
+            System.out.println("-> ATENDIENDO A: " + pacienteAtendido.toString());
+            System.out.println("-> Pacientes restantes en espera: " + cola.size());
+            System.out.println("------------------------------------------------------");
+        } else {
+            System.out.println("-> AVISO: No hay pacientes en espera en este momento.");
+        }
+    }
+
+    public static void registrarPaciente(Queue<Paciente> cola, Paciente paciente) {
+        cola.add(paciente); // add() ingresa al final de la cola
+        System.out.println("[REGISTRO] Ingresa: " + paciente.getNombre() + ". Pacientes en espera: " + cola.size());
     }
 }

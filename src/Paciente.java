@@ -10,4 +10,12 @@ public class Paciente {
         this.edad = edad;
         this.motivoConsulta = motivoConsulta;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getMotivoConsulta(){
+        return motivoConsulta;
+    }
 }
